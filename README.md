@@ -23,5 +23,5 @@ Inspired by the book "Mathematics 1001" from the library and Youtube channel "me
 
 Feel free to read the PDF! Welcome for feedback.
 
-##Note
+## Note
 graph.png is coded by google Ai mode, but the accuracy is verify will not affect the report 
