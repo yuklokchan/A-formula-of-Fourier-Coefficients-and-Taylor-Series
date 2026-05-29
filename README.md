@@ -22,3 +22,6 @@ Inspired by the book "Mathematics 1001" from the library and Youtube channel "me
 • Explore real-life applications (e.g. modelling waves or forces)
 
 Feel free to read the PDF! Welcome for feedback.
+
+##Note
+graph.png is coded by google Ai mode, but the accuracy is verify will not affect the report 
