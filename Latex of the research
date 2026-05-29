@@ -1,0 +1,330 @@
+\documentclass{report}
+\usepackage{graphicx} % Required for inserting images
+
+\title{\textbf{A formula of Fourier Coefficients and Taylor Series}}
+\author{\textit{Chan Yuk Lok}}
+\date{May 2026}
+\usepackage[bottom=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{amssymb}
+
+
+\begin{document}
+
+\maketitle
+\section{Introduction}
+Taylor series and Fourier series are two fundamental rule of both calculus and analysis for simple representation of function. Taylor series is a tool to simulate any function with simple polynomial, and Fourier series are used to simulate periodic function(or non-periodic function in certain interval) with simple sine and cosine curve.
+
+This report present a formula that establish a link between interval $x\in[-L,L]$ where L might be any real number. By equaling the Taylor series and Fourier series in a certain interval. Which could derive the value of any point on the function with Fourier coefficient and Taylor term.
+
+While the formula is currently more of theoretical interest, it demonstrates an interesting link between two major series expansions. Future work may explore some use of this theory.
+
+I become interest of Fourier because of a book in library call "Mathematic 1001", it bring a lot of difficult topic like Fourier series to simple paragraph, even with low detail, it did bring me interest to Fourier series. And for Taylor series, it is because it is shock that we could simulate all function, to simple polynomial which could be calculated easily, it feel so shock when I realize all those complex function $\sin$,$\cos$,$\ln$ are all just  polynomial. That why I start write about those two topic.
+\section{The definition of the formula }
+The formula is 
+\[
+f(0) = \frac{b_0}{2} + \sum_{n=1}^{\infty} {(a_n\sin (\frac{n\pi x}{L})+b_n\cos(\frac{n\pi x}{L})-\frac{f^{(n)}(0)}{n!}x^n)}
+\]
+in this report, the variable and constant will always be the following unless stated.
+\[
+b_0=\frac{1}{L} \int_{-L}^{L}f(x)dx
+\]
+\[
+a_n=\frac{1}{L} \int_{-L}^{L} f(x) \sin(\frac{n\pi x}{L})\,dx
+\]
+\[
+b_n=\frac{1}{L} \int_{-L}^{L} f(x) \cos(\frac{n\pi x}{L})\,dx
+\]
+  \begin{center}
+       $L=$interval where the formula works
+   \end{center}
+     
+\[
+x\in [-L,L]
+\]
+
+\[
+f^{(n)}(x)=\frac{d^{n}f(x)}{dx^{n}}
+\]
+\section{Proof}
+Starting from the Taylor Series
+\[
+f(x)=\sum_{n=0}^{\infty}{\frac{f^{(n)}(0)}{n!}x^n}
+\]
+we could split the sum to two part.
+\[
+f(x)=f(0)+\sum_{n=1}^{\infty}(\frac{f^{(n)}(0)x^{n}}{n!})
+\]
+Then we could start in the Fourier part. In the interval $x\in [-L,L]$ for non periodic function and every where for periodic function
+\[
+f(x)=\frac{b_0}{2}+\sum_{n=1}^{\infty}(a_n \sin(\frac{n \pi x}{L})+b_n\cos(\frac{n \pi x}{L}))
+\]
+Then we could link them as $f(x)=f(x)$
+\[
+f(0)+\sum_{n=1}^{\infty}(\frac{f^{(n)}(0)x^{n}}{n!})=\frac{b_0}{2}+\sum_{n=1}^{\infty}(a_n \sin(\frac{n \pi x}{L})+b_n\cos(\frac{n \pi x}{L}))
+\]
+Next we subtract both side by $\sum_{n=1}^{\infty}(\frac{f^{(n)}(0)x^{n}}{n!})$ to isolate $f(0)$ and we will get
+\[
+f(0)=\frac{b_0}{2}+\sum_{n=1}^{\infty}(a_n \sin(\frac{n \pi x}{L})+b_n\cos(\frac{n \pi x}{L}))-\sum_{n=1}^{\infty}(\frac{f^{(n)}(0)x^{n}}{n!})
+\]
+and blending the sum we get
+\[
+f(0)=\frac{b_0}{2}+\sum_{n=1}^{\infty}(a_n \sin(\frac{n \pi x}{L})+b_n\cos(\frac{n \pi x}{L})-\frac{f^{(n)}(0)x^{n}}{n!})
+\]
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{graph.png}
+    \caption{a image of the different approx and the formula divide by $f(0)$ in $f(x)=e^x$} in $x\in [-1,1]$ and $L=1$
+    \label{fig:my_image}
+    
+\end{figure}
+
+as seen in the graph, the closer to infinity your sum get, both approx get close to $f(x)$ and the formula get close to $f(0)=1$. We could also realize that it doesn't need to be infinity to reach $f(0)$ as it is a wave form curve which mean we doesn't need to do a infinity sum to get $f(0)$ in certain $x$ value. Honestly, I don't know what is the pattern of the x value but it is a area that could be research.
+
+the formula can also be further continued for value $f(a)$ where $a$ is an real number by the Taylor Series.
+\[
+f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n
+\]
+which could be split to 
+\[
+f(x)=f(a)+\sum_{n=1}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n
+\]
+substituted back to get
+\[
+f(a)=f(0)=\frac{b_0}{2}+\sum_{n=1}^{\infty}(a_n \sin(\frac{n \pi x}{L})+b_n\cos(\frac{n \pi x}{L})-\frac{f^{(n)}(a)(x-a)^{n}}{n!})
+\]
+which could be expand to
+\[
+f(a)=f(0)=\frac{b_0}{2}+\sum_{n=1}^{\infty}(a_n \sin(\frac{n \pi x}{L})+b_n\cos(\frac{n \pi x}{L})-\frac{f^{(n)}(a)}{n!}\sum_{k=0}^{n}\binom{n}{k}(x)^k(-a)^{n-k})
+\]
+\section{Worked example of question}
+This formula might look useless. Anyway, it could be use to simplify different expression and sum which might or might nor be appear in real life problem. Anyway, those problem require a lot of "notice that" to solve them.
+\subsection{Worked example 1}
+given a function, $f(x)$ in the interval $x\in [-1,1]$equal to
+\[
+f(x)=x^2 \sinh(1) + \sum_{n=1}^{\infty} ( \frac{2n\pi (-1)^{n+1} \sinh(1)}{1 + n^2\pi^2} x^2 \sin(n\pi x) + \frac{2 (-1)^n \sinh(1)}{1 + n^2\pi^2} x^2 \cos(n\pi x)  -  \frac{x^{n+2}}{n!})
+\]
+\begin{enumerate}
+  \item Simplify the expression
+  \item Hence, find the exact value of
+  \[
+  \int_{0}^{1}f(x)dx
+  \]
+\textbf{Solve to part(1)}
+\[
+f(x)=x^2 \sinh(1) + \sum_{n=1}^{\infty} ( \frac{2n\pi (-1)^{n+1} \sinh(1)}{1 + n^2\pi^2} x^2 \sin(n\pi x) + \frac{2 (-1)^n \sinh(1)}{1 + n^2\pi^2} x^2 \cos(n\pi x)  -  \frac{x^{n+2}}{n!})
+\]
+we could factories out $x^2$
+\[
+f(x)=x^2(\sinh(1)+\sum_{n=1}^{\infty}(\frac{2n\pi(-1)^{n+1}\sinh(1)}{1+n^2\pi^2}\sin{(n\pi x)+\frac{2(-1)^n \sinh(1)}{1+n^2\pi^2}\cos{(n\pi x)}-\frac{x^n}{n!})}
+\]
+Notice that $\sinh(1)$ is the $\frac{b_0}{2}$ of the function $g(x)=e^x$ in the interval $x \in [-1,1]$. We could calculate the $a_n $ and $b_n$ of $e^x$.(solve in \ref{ABC})
+\[
+a_n=\frac{2n\pi(-1)^{n+1}\sinh(1)}{1+n^2\pi^2}
+\]
+and
+\[
+b_n=\frac{2(-1)^n\sinh(1)}{1+n^2\pi^2}
+\]
+
+notice that $a_n$ and $b_n$ is equal to coefficient of $\sin{(n\pi x)}$ and $\cos{(n\pi x)}$ of the original equation so we could get
+\[f(x)=x^2(g(0))\]
+\[f(x)=x^2\]
+\textbf{Solve to part(2)}
+\[\int_{0}^{1}f(x)dx=\int_0^1x^2dx\]-from 1.
+\[\int_0^1x^2dx=\left[ \frac{1}{3}x^3 \right]_0^1
+\]
+\[
+=\frac{1}{3}*1-\frac{1}{3}*0=\frac{1}{3}
+\]
+\subsection{Work Example 2}
+For a function, $f(x)$ is given as
+\[
+f(x)=\sum_{n=1}^{\infty}(\frac{4(-1)^n}{n}(2\sin{(\frac{nx}{2})}\cos{(\frac{nx}{2}})))+67x
+\]
+\begin{enumerate}[label=\arabic*.]
+    \item Write a simplify expression for $f(x)$ in the interval $x\in[-\pi,\pi]$
+    \item Hence, find a expression for $f'(x)$ and $\int f(x) dx$ in the interval $x\in[-\pi,\pi]$
+\end{enumerate}
+\textbf{Solve to part(1)}
+
+simplify the expression by the double angle formula
+\[
+f(x)=\sum_{n=1}^{\infty}(\frac{4(-1)^n}{n}(\sin(nx)))+67x
+\]
+notice that $\sum_{n=1}^{\infty}\frac{4(-1)^n}{n}\sin(nx)$ is a function, $g(x)=-2x$ to the sawtooth function, $s(x)$
+\[
+s(x)=\sum_{n=1}^{\infty}\frac{2(-1)^{n+1}}{n}\sin(nx)
+\]
+which has a simplify function in the interval $x\in [-\pi,\pi]$ which is 
+\[
+s(x)=x
+\] 
+by the function
+\[
+gs(x)=-2g(x)=-2x
+\]
+then we let $a_n$ and $b_n$ be the Fourier coefficient of $gs(x)$ where 
+\[a_n=\frac{4(-1)^n}{n}\]
+\[b_n=0\]
+and since in the interval $gs(x)$ is linear, the $\sum_{n=1}^{\infty}\frac{f^{(n)}(0)}{n!}(x)^n=-2x$, substitute back to our original function we get
+\[
+f(x)=\sum_{n=1}^{\infty}(a_n\sin(nx)+b_n\cos(nx)-\frac{gs^{(n)}(0)}{n!}(x)+\frac{gs^{(n)}(0)}{n!}(x))+67x
+\]
+using the formula, we could simplify it to
+\[
+f(x)=gs(0)-2x+67x=-2\cdot 0-2x+67x=65x
+\]
+so the simplify expression for $f(x)$ in the interval $x\in [-\pi,\pi]$ is
+\[
+f(x)=65x
+\]
+This example, although somewhat artificially constructed, it illustrate a use of the formula to simplify certain infinity trigonometry series. Even this question would be possible or even easier without the formula, it provide a alternate method which might be able to simplify more complex function.
+
+\newpage
+\textbf{Solve to part(2)}
+\[
+f'(x)=\frac{d(65x)}{dx}=65
+\]
+\[
+\int f(x) dx=\int65xdx=\frac{65}2x^2+c
+\]
+\subsection{Worked Example 3}
+A box mass $5kg$, $A$, are pulled and pushed in thousands of force in both from east and west.The forces from both direction change over time, $t$seconds. The force from east follow a sequence of $F_n=2(-1)^{n-1}sin(2nt)$ starting from $n=1$ and the force from left follow a sequence of $f_n=\frac{\tan^{(n)}(0)}{n!}t^n$ starting from $n=1$. Air resistance and friction are negligible. 
+\begin{enumerate}[label=\arabic*.]
+    \item Determine is the object is in equilibrium in $t=0s$, if no, find its acceleration
+\end{enumerate}
+\textbf{Solve to the question}
+
+Draw a diagram.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Force diagram.png}
+
+    \label{fig:my_image2}
+    
+\end{figure}
+Let $F$ be the resultant force of $A$ and $N_e$ be the number of force from left and $N_w$ be the number of force from right.
+\[
+F=\sum_{n=1}^{N_e}F_n-\sum_{n=1}^{N_w}f_n
+\]
+as there is $N_e$ and $N_w$ is big, $N_e\to\infty$ and $N_w\to\infty$. Then we could change the expression to
+\[
+F=\sum_{n=1}^{\infty}(F_n-f_n)
+\]
+and substitute the sequence of $F_n$ and $f_n$ to the equation we get
+\[
+F=\sum_{n=1}^{\infty}2(-1)^{n-1}\sin{(2nt)}-\frac{\tan^{(n)}(0)}{n!}t^n
+\]
+You could start with $\sum_{n=1}^{\infty}2(-1)^{n-1}\sin{(2nt)}$, but I will use $\frac{\tan^{(n)}(0)}{n!}t^n$ as it is simpler.
+
+
+Let $f(t)=\tan t$, finding $a_n$ and $b_n$, you would get (The proof is too long)
+\[
+a_n=2(-1)^{n-1}
+\]
+\[
+b_n=0
+\]
+which is true for the interval $x\in[-\frac{\pi}{2},\frac{\pi}{2}]$, then you would notice that the original equation fit the form
+\[
+\frac{b_0}{2}+\sum_{n=1}^{\infty}a_n\sin{\frac{n\pi x}{L}}+b_n\cos{\frac{n\pi x}{L}}-\frac{f^{(n)}(0)}{n!}x^n
+\]
+so we could change the original equation to
+\[
+F=\sum_{n=1}^{\infty}2(-1)^{n-1}\sin{(2nt)}-\frac{\tan^{(n)}(0)}{n!}t^n=f(0)=\tan(0)=0
+\]
+
+$\therefore$ $F$ is small enough to be negligible, so we could treat it as $F=0$ 
+
+according to Newton's second law, $F=ma$, substitute back to the equation
+\[0=5\cdot a\]
+\[a=0\]
+ $\therefore$ the acceleration of the box is zero.
+
+This example, although somewhat artificially constructed, it illustrate a use of the formula to simplify real life case with a lot of force. Even this question would be possible without the formula, it provide a alternate method which might be able to simplify more complex function.
+\section{Limitation of the formula}
+Even this Formula is able to simplify many expression, however it has a lot of major limitation, here are few major limitation of it.
+\subsection{Interval of working}
+This formula is strictly restrict by the interval $x\in [-L,L]$. Any $x$ value out of the interval, the formula will immediately disable. As seen in Figure 1, after $x\notin [-1,1]$, it immediately disable. The only situation where this won't happen is when $f(x)$ is a periodic function with the period $2L$ center in $x=0$. You could fix it by increasing the size of the interval but that would increase the amount of calculation. And the point of calculation might be out of the radius of converge which could completly disable the formula.
+\subsection{Speed of convergent}
+This formula depend on two different completely different approximate, Fourier series and Taylor series. The converge speed of the two formula is very different, as Taylor match the center of the series of the series but converge extremely slow for point far from the center of the series. Fourier series converge as a wavy curve in the interval $x\in[-L,L]$ fast but completely disable once $x\notin [-L,L]$. As the converge speed is different, the accuracy of calculation with little term will be low. Anyway, if you calculate with a lot of term, or handling case in analyses with infinity, it will be fine.
+\subsection{Rarity of appearing}
+In real math or physic case, the form of $\sum_{n=1}^{\infty}Fourier-Taylor$ is rare. So it is rare to find case where you would need the formula to simplify the expression. We could rearrange the formula to make it able to simplify but this require long time to calculate.
+\section{Conclusion}
+This formula is a formula able to simplify different expression with infinity sum and infinity derivative to a simple constant which is easy to calculate. It has a problem of unlikely hood of needing it, and small interval of working. This could affect the calculation by a lot. This is all of the paper, thank you for reading it.
+\section{Appendix}
+\subsection{Solution to $a_n$ and $b_n$ in \textbf{0.4.1}}\label{ABC}
+let $c_n=b_n+ia_n$
+\[
+c_n=\int_{-1}^1e^x\cos{(n\pi x)}+ie^x\sin(n\pi x)dx
+\]
+factories
+\[
+\int_{-1}^1e^x(\cos{(n\pi x)}+i\sin{(n\pi x)}  dx
+\]
+using the Euler identity we could get
+\[
+\int_{-1}^1e^x(e^{in\pi x})dx
+\]
+which could be simplify to
+\[
+\int_{-1}^1e^{(1+in\pi)x}dx
+\]
+integrating it we get
+\[
+\left[ \frac{e^{(1+in\pi)x}}{1+in\pi}\right]_{-1}^1
+\]
+which equal to
+\[
+\frac{e^{1+in\pi}-e^{-1-in\pi}}{1+in\pi}
+\]
+we could split it to
+\[
+\frac{e^{in\pi} \cdot e^1+e^{-in\pi}\cdot e^{-1}}{1+in\pi}
+\]
+using the Euler identity, we will get:
+\[
+e^{in\pi}=\cos{(n\pi)}+i\sin{(n\pi)}
+\]
+and as n is a integer, $\sin{(n\pi)}=0$ and $\cos{(n\pi)=(-1)^n}$, so we could simplify to
+\[
+e^{(in\pi)}=(-1)^n+0=(-1)^n
+\]
+and 
+\[
+e^{-in\pi}=\cos{(-n\pi)}+i\sin{(-n\pi)}
+\]
+and as n is a integer, $\sin{(-n\pi)}=0$ and $\cos{(-n\pi)=(-1)^n}$, so we could simplify to
+\[
+e^{-in\pi}=(-1)^n
+\]
+substitute back to the equation we get
+\[
+\frac{(-1)^n(e^1)+(-1)^n(e^{-1})}{1+in\pi}
+\]
+which could be simplify to
+\[
+\frac{(-1)^n(e^1+e^{-1})}{1+in\pi}=\frac{2(-1)^n\sinh{(1)}}{1+in\pi}
+\]
+to clear the complex number, we get
+\[
+\frac{2(-1)^n\sinh(1)(1-in\pi)}{(1+in\pi)(1-in\pi)}=\frac{2(-1)^n\sinh(1)+i\cdot -2n\pi(-1)^n\sinh(1) }{1+n^2\pi^2}
+\]
+as $c_n=b_n+ia_n$, so
+\[
+a_n=\frac{2n\pi(-1)^{n+1}\sinh(1)}{1+n^2\pi^2}
+\]
+and 
+\[
+b_n=\frac{2(-1)^n\sinh(1)}{1+n^2\pi^2}
+\]
+
+
+\end{enumerate}
+
+
+
+\end{document}
+\textbf{anjs}
